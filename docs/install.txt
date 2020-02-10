@@ -1,0 +1,44 @@
+
+Laminas 
+
+Executar no console
+    php composer.phar self-update
+    php composer.phar create-project -sdev laminas/laminas-mvc-skeleton .
+    php composer.phar require doctrine/doctrine-orm-module
+
+Adicionar os módulos no arquivo config/modules.config.php
+    'DoctrineModule',
+    'DoctrineORMModule',
+
+Copiar o arquivo config/development.config.php.dist para config/development.config.php
+Copiar o arquivo config/autoload/local.php.dist para config/autoload/local.php
+
+Adicionar a configuração abaixo, referente ao banco de dados para o arquivo config/autoload/local.php :
+
+    use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
+
+    return [
+        'doctrine' => [
+            'connection' => [
+                'orm_default' => [
+                    'driverClass' => PDOMySqlDriver::class,
+                    'params' => [
+                        'host'      => 'localhost',
+                        'dbname'    => 'database',
+                        'user'      => 'userdb',
+                        'password'  => 'masterpassword',
+                        'port' => '3306',
+                        
+                    ]
+                ],            
+            ],        
+        ],
+    ];
+
+-----------------------
+
+Obs: verificar versão do doctrine para o Laminas.
+
+
+
+
