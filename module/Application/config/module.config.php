@@ -71,7 +71,4 @@ return [
             ]
         ],
     ],
-    'data-fixture' => [
-        'Imoveis_fixture' => __DIR__ . '/../src/' . __NAMESPACE__ . '/Fixture',
-    ],
 ];

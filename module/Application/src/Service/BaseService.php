@@ -4,26 +4,16 @@ namespace Application\Service;
 
 use Doctrine\ORM\EntityManager;
 
-use Application\Entity\Tag;
-
 /**
  * Class TagService
  * @package Application\Service
  */
-class TagService
+class BaseService
 {
     /**
      * @var EntityManager
      */
-    private $em;
-
-    /**
-     * TagService constructor.
-     */
-    public function __construct() 
-    {
-
-    }
+    protected $em;
 
     /**
      * @param EntityManager
@@ -31,11 +21,6 @@ class TagService
     public function setEm(EntityManager $em)
     {
         $this->em = $em;
-    }
-
-    public function getListTags()
-    {
-        return $this->executeSql("SELECT * FROM tags LIMIT 10", "all");
     }
 
     /**

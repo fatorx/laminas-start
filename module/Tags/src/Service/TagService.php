@@ -3,6 +3,7 @@
 namespace Tags\Service;
 
 use Doctrine\ORM\EntityManager;
+use Application\Service\BaseService;
 
 use Tags\Entity\Tag;
 
@@ -10,13 +11,8 @@ use Tags\Entity\Tag;
  * Class TagService
  * @package Tags\Service
  */
-class TagService
+class TagService extends BaseService
 {
-    /**
-     * @var EntityManager
-     */
-    private $em;
-
     /**
      * TagService constructor.
      */
@@ -44,40 +40,5 @@ class TagService
         $this->em->flush();
         
         return $tag->getId() > 0;
-    }
-
-    /**
-     * @param EntityManager
-     */
-    public function setEm(EntityManager $em)
-    {
-        $this->em = $em;
-    }
-    
-    /**
-     * @param $sql
-     * @param string $get
-     * @return array|bool|mixed
-     * @throws \Doctrine\DBAL\DBALException
-     */
-    public function executeSql($sql, $get = 'unique')
-    {
-        $stmt = $this->em->getConnection()->prepare($sql);
-
-        try {
-            $stmt->execute();
-        } catch (\Exception $e) {
-            echo $e->getMessage(); exit();
-        }
-
-        if ($get == 'all') {
-            return $stmt->fetchAll();
-        }
-
-        if ($get == null) {
-            return true;
-        }
-        
-        return $stmt->fetch();
     }
 }    

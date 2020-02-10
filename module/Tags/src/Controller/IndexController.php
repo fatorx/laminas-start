@@ -10,6 +10,7 @@ use Laminas\View\Model\ViewModel;
 use Laminas\View\Model\JsonModel;
 use Laminas\Http\Request;
 
+use Application\Controller\Traits\ControllerHelper;
 use Tags\Service\TagService;
 
 /**
@@ -18,13 +19,15 @@ use Tags\Service\TagService;
  */
 class IndexController extends AbstractActionController
 {
+    use ControllerHelper;
+
     /**
      * @return ViewModel
      */
     public function indexAction()
     {   
         /** @var TagService $tagService */
-        $tagService = $this->getServiceMager()->get(TagService::class);
+        $tagService = $this->getServiceManager()->get(TagService::class);
         $list = $tagService->getListTags();
 
         $data = [
@@ -46,7 +49,7 @@ class IndexController extends AbstractActionController
             $data = $request->getPost()->toArray();
 
             /** @var TagService $tagService */
-            $tagService = $this->getServiceMager()->get(TagService::class);
+            $tagService = $this->getServiceManager()->get(TagService::class);
             $status = $tagService->saveTag($data);
         }
 
@@ -55,13 +58,4 @@ class IndexController extends AbstractActionController
         ];
         return new JsonModel($data);
     }
-
-    /**
-     * @return ServiceManager
-     */
-    public function getServiceMager()
-    {
-        return $this->getEvent()->getApplication()->getServiceManager();
-    }
-
 }
