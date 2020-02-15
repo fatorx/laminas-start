@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Tags\Controller;
 
 use Laminas\Mvc\Controller\AbstractActionController;
@@ -29,7 +27,7 @@ class IndexController extends AbstractActionController
         /** @var TagService $tagService */
         $tagService = $this->getServiceManager()->get(TagService::class);
         $list = $tagService->getListTags();
-
+        
         $data = [
             "list" => $list
         ];

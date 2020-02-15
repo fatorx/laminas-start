@@ -22,12 +22,26 @@ class Tag
     protected $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     */
+    protected $userId;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     * @ORM\Column(name="name", type="string", length=50, nullable=true)
      */
     protected $name;
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=60, nullable=true)
+     */
+    protected $slug;
+
     /**
      * @var \DateTime
      *
@@ -70,7 +84,9 @@ class Tag
      */
     public function toArray()
     {
-        return (new ClassMethods(true))->extract($this);
+        $extractData =  (new ClassMethods(true))->extract($this);
+        
+        return $extractData;
     }
 
     /**
@@ -94,6 +110,26 @@ class Tag
     }
 
     /**
+     * Set the value of slug
+     *
+     * @return  self
+     */ 
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user id
+     */ 
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
      * Get the value of name
      */ 
     public function getName()
@@ -112,40 +148,84 @@ class Tag
 
         return $this;
     }
+    
+    /**
+     * Get the value of slug name
+     */ 
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 
     /**
-     * @return \Datetime
+     * Set the value of slug name
+     *
+     * @return  self
+     */ 
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
      */
-    public function getCreatedAt(): \Datetime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
     /**
-     * @param string $createdAt
+     * @return string
+     */
+    public function getCreatedAtFormat(): string
+    {
+        $createdAt = $this->createdAt;
+
+        if ($createdAt instanceof \DateTime) {
+            $createdAt = $createdAt->format('Y-m-d H:i:s');
+        }
+        return (string)$createdAt;
+    }
+
+    /**
      * @return self
      */
     public function setCreatedAt(): Tag
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = (new \DateTime)->format('Y-m-d H:i:s');
         return $this;
     }
 
     /**
-     * @return \Datetime
+     * @return \DateTime
      */
-    public function getUpdatedAt(): \Datetime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
+    }   
+
+    /**
+     * @return string
+     */
+    public function getUpdatedAtFormat(): string
+    {
+        $updatedAt = $this->updatedAt;
+
+        if ($updatedAt instanceof \DateTime) {
+            $updatedAt = $updatedAt->format('Y-m-d H:i:s');
+        }
+        return (string)$updatedAt;
     }
 
     /**
-     * @param string $updatedAt
      * @return self
      */
-    public function setUpdatedAt(?string $updatedAt): Tag
+    public function setUpdatedAt(): Tag
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime();
         return $this;
     }
 }

@@ -1,11 +1,14 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Tags;
 
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\EventManager\EventInterface;
+use Laminas\EventManager\EventManager;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Escaper\Escaper;
 use Doctrine\ORM\EntityManager;
+
 
 use Tags\Service\TagService;
 
@@ -14,6 +17,14 @@ class Module
     public function getConfig() : array
     {
         return include __DIR__ . '/../config/module.config.php';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function onBootstrap(EventInterface $e)
+    {
+        
     }
 
     public function getServiceConfig()

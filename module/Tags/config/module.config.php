@@ -11,23 +11,16 @@ use Laminas\ServiceManager\Factory\InvokableFactory;
 return [
     'router' => [
         'routes' => [
-            'tag-home' => [
-                'type'    => Literal::class,
-                'options' => [
-                    'route'    => '/tags',
-                    'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
-                    ],
-                ],
-            ],
-            'tag-routes' => [
+            'tags' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/tags[/:action]',
+                    'route'    => '/tags[/:id]',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
+                        'controller'    => Controller\TagsController::class,
+                        'isAuthorizationRequired' => true 
+                    ],
+                    'constraints' => [
+                        'formatter' => '[a-zA-Z0-9_-]*',
                     ],
                 ],
             ],
@@ -36,6 +29,8 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+            Controller\TagsController::class => Controller\Factory\TagsControllerFactory::class,
+            Controller\ClientController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [
@@ -61,6 +56,6 @@ return [
         ],
     ],
     'data-fixture' => [
-        'Imoveis_fixture' => __DIR__ . '/../src/' . __NAMESPACE__ . '/Fixture',
+        'Tags_fixture' => __DIR__ . '/../src/' . __NAMESPACE__ . '/Fixture',
     ],
 ];

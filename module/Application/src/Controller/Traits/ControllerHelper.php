@@ -19,7 +19,7 @@ trait ControllerHelper
     public function getServiceManager()
     {
         if (! $this instanceof AbstractActionController) {
-            throw new \RuntimeException('This trait is only useful in controllers');
+            //throw new \RuntimeException('This trait is only useful in controllers');
         }
 
         return $this->getEvent()->getApplication()->getServiceManager();

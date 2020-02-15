@@ -20,14 +20,24 @@ return [
                         'action'     => 'index',
                     ],
                 ],
-            ],
-            'application' => [
-                'type'    => Segment::class,
+            ],            
+            '404' => [
+                'type' => Segment::class,
                 'options' => [
-                    'route'    => '/application[/:action]',
+                    'route' => '/:*',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
+                        'controller' => Controller\RouteNotFoundController::class,
+                        'action' => 'routenotfound',
+                    ],
+                ],
+            ],
+            'token' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/token',
+                    'defaults' => [
+                        'controller' => Controller\AccessController::class,
+                        'action' => 'token',
                     ],
                 ],
             ],
@@ -36,6 +46,8 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+            Controller\RouteNotFoundController::class => InvokableFactory::class,
+            Controller\AccessController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [

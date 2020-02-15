@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Application\Service;
 
@@ -14,6 +14,18 @@ class BaseService
      * @var EntityManager
      */
     protected $em;
+
+    /**
+     * Flag for check status operation in services.
+     * 
+     * @var bool
+     */
+    protected $status = true;
+
+    /**
+     * @var int
+     */
+    protected $userId = 0;
 
     /**
      * @param EntityManager
@@ -48,5 +60,21 @@ class BaseService
         }
         
         return $stmt->fetch();
+    }
+
+    /**
+     * @return bool
+     */
+    public function getStatus() : bool
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param int $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
     }
 }    

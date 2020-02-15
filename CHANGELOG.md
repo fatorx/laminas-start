@@ -1,25 +1,13 @@
 # Changelog
 
-All notable changes to this project will be documented in this file, in reverse chronological order by release.
+Status de alterações do modelo Laminas
 
-## 1.0.0 - TBD
+## 0.1.0
 
-### Added
+### Adicionado entidades
 
-- Nothing.
+- Ok.
 
-### Changed
+### Adicionado modelo Restfull
 
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
-- Nothing.
+- Ok.
