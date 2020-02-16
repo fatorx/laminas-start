@@ -30,7 +30,6 @@ return [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
             Controller\TagsController::class => Controller\Factory\TagsControllerFactory::class,
-            Controller\ClientController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [

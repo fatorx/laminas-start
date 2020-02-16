@@ -44,7 +44,8 @@ class TagService extends BaseService
      */
     public function getItem(int $id)
     {
-        $tag = $this->em->getRepository($this->entity)->find($id); 
+        $tag = $this->em->getRepository($this->entity)
+                        ->findOneBy(['id' => $id, 'userId' => $this->userId]); 
         if ($tag) {
             return $tag->toArray();
         }
@@ -57,7 +58,8 @@ class TagService extends BaseService
      */
     public function getList(int $limit = 10)
     {
-        $tags = $this->em->getRepository($this->entity)->findAll(); 
+        $tags = $this->em->getRepository($this->entity)
+                         ->findBy(['userId' => $this->userId]); 
         if ($tags) {
             $list = [];
             foreach ($tags as $tag) {
@@ -96,7 +98,7 @@ class TagService extends BaseService
         
         $slugify = new Slugify();
         $pars['slug'] = $slugify->slugify($pars['name']);
-        
+
         $hydrator = new ClassMethods();
         $hydrator->hydrate($pars, $entityRef);
         
@@ -109,13 +111,14 @@ class TagService extends BaseService
 
     public function delete($id)
     {
-        $entity = $this->em->getRepository($this->entity)->find($id);
+        $entity = $this->em->getRepository($this->entity)
+                           ->findOneBy(['id' => $id, 'userId' => $this->userId]);
         
         if($entity) {
             $this->em->remove($entity);
             $this->em->flush();
-            return $id;
-        }             
+        }  
+        return $entity;;           
     }
 
     /**

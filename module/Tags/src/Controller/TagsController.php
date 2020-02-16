@@ -53,8 +53,6 @@ class TagsController extends ApiController
     public function get($id)
     {
         $this->preLoadMethod();
-        $list = $this->service->getList($userId);
-
         $item = $this->service->getItem((int)$id);
         if (empty($item)) {
             $this->httpStatusCode = 404;
@@ -80,7 +78,7 @@ class TagsController extends ApiController
             'id'     => $id,
             'action' => 'create'
         ];
-        return new JsonModel($data);
+        return $this->createResponse($data);
     }
 
     /**
@@ -98,7 +96,7 @@ class TagsController extends ApiController
             'item'   => $item,
             'action' => 'update'
         ];
-        return new JsonModel($data);
+        return $this->createResponse($data);
     }
      
     /**
@@ -110,7 +108,7 @@ class TagsController extends ApiController
         $data = [
             'action' => 'replaceList'
         ];
-        return new JsonModel($data);
+        return $this->createResponse($data);
     }
 
     /**
@@ -120,9 +118,16 @@ class TagsController extends ApiController
     {
         $this->preLoadMethod();
         $item = $this->service->delete((int)$id);
+        $status = true;
+        if (empty($item)) {
+            $this->httpStatusCode = 400;
+            $status = false;
+        } 
         $data = [
-            'action' => 'delete'
+            'status' => $status,
+            'id' => $id,
+            'action' => 'delete',
         ];
-        return new JsonModel($data);
+        return $this->createResponse($data);
     }
 }
