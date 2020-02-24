@@ -15,3 +15,5 @@ Payload note
     iat (issued at) = Timestamp de quando o token foi criado;
     aud (audience) = Destinatário do token, representa a aplicação que irá usá-lo.
 */  
+
+

@@ -24,12 +24,26 @@ return [
                     ],
                 ],
             ],
+            'tags-points' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/tags-points',
+                    'defaults' => [
+                        'controller'    => Controller\TagsPointsController::class,
+                        'isAuthorizationRequired' => true 
+                    ],
+                    'constraints' => [
+                        'formatter' => '[a-zA-Z0-9_-]*',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
             Controller\TagsController::class => Controller\Factory\TagsControllerFactory::class,
+            Controller\TagsPointsController::class => Controller\Factory\TagsPointsControllerFactory::class,
         ],
     ],
     'view_manager' => [
@@ -45,7 +59,7 @@ return [
             __NAMESPACE__ . '_driver' => [
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => [__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity']
+                'paths' => [__DIR__ . '/../src/Entity']
             ],
             'orm_default' => [
                 'drivers' => [

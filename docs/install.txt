@@ -42,3 +42,5 @@ Obs: verificar versão do doctrine para o Laminas.
 
 
 
+Rodar na raiz do projeto
+vendor/bin/doctrine-module orm:schema-tool:update --force --dump-sql

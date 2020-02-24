@@ -9,8 +9,12 @@ function getEntityManager() : \Doctrine\ORM\EntityManager
 
     if ($entityManager === null)
     {
-        $paths = array(__DIR__ . '/src/Entities');
-        $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration($paths);
+        $paths = [
+            __DIR__ . '/module/Application/src/Entity',
+            __DIR__ . '/module/Tags/src/Entity',
+        ];
+        $isDevMode = true;
+        $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
         
         $configLocal = require_once __DIR__ .'/config/autoload/local.php';
         $dbParams = $configLocal['doctrine']['connection']['orm_default']['params'];

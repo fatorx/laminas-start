@@ -72,6 +72,9 @@ class TagsController extends ApiController
         $this->preLoadMethod();
         $status = $this->service->create($data);
         $id     = $this->service->getId();
+        if (!$status) {
+            $this->httpStatusCode = 400;
+        }
 
         $data = [
             'status' => $status,

@@ -3,12 +3,13 @@
 namespace Tags\Service;
 
 use Doctrine\ORM\EntityManager;
-use Application\Service\BaseService;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Filter\FilterChain;
 use Cocur\Slugify\Slugify;
 
+use Application\Service\BaseService;
 use Tags\Entity\Tag;
+use Tags\Entity\TagPoint;
 
 /**
  * Class TagService
@@ -27,11 +28,17 @@ class TagService extends BaseService
     private $entity;
 
     /**
+     * @var Tag
+     */
+    private $entityPoint;
+
+    /**
      * TagService constructor.
      */
     public function __construct() 
     {
         $this->entity = Tag::class;
+        $this->entityPoint = TagPoint::class;
     }
 
     /**
@@ -71,7 +78,8 @@ class TagService extends BaseService
      */
     public function getListTags() : array
     {
-        return $this->executeSql("SELECT * FROM tags LIMIT 10", "all");
+        $sql = ' SELECT id, user_id, name, slug, created_at, updated_at FROM tags LIMIT 10 ';
+        return $this->executeSql($sql, "all");
     }
 
     /**
@@ -81,16 +89,39 @@ class TagService extends BaseService
     public function create(array $pars) : bool
     {
         $pars['name'] = $this->filterName($pars['name']);
-
+        
         $slugify = new Slugify();
         $pars['slug'] = $slugify->slugify($pars['name']);
 
+        if (!$this->validCreate($pars)) {
+            return false;
+        }
+        
         $tag = new Tag($pars);
         $this->em->persist($tag);
         $this->em->flush();
         
         $this->id = $tag->getId();
         return $this->id > 0;
+    }
+
+    /**
+     * @param array $pars
+     * @return bool
+     */
+    public function validCreate(array $pars) : bool
+    {
+        $sqlModel  = ' SELECT t FROM '.$this->entity.' t 
+                       WHERE t.createdAt > CURRENT_DATE()
+                       AND t.slug = :slug
+                       AND t.userId = :userId ';
+        $query = $this->em->createQuery($sqlModel);
+
+        $query->setParameter('userId', $this->userId);
+        $query->setParameter('slug', $pars['slug']);
+        $result = $query->getResult();
+
+        return empty($result);
     }
 
     /**
@@ -142,10 +173,60 @@ class TagService extends BaseService
         
         if($entity) {
             $this->em->remove($entity);
-            $this->em->flush();
+
+            $tagPoint = $this->em->getRepository($this->entityPoint)
+                             ->findOneBy(['tagId' => $tagId]);
+            $this->em->remove($tagPoint);
+            
+            $this->em->flush();                 
         }  
         return $entity;          
     }
+
+    /**
+     * @param array $pars
+     * @return bool
+     */
+    public function createOrUpdatePoints(array $pars) : bool
+    {
+        $tagId = (int)$pars['tag_id'];
+        $entity = $this->checkTagById($tagId);
+
+        if (!$entity) {
+            return false;
+        }                
+
+        $tagPoint = $this->em->getRepository($this->entityPoint)
+                             ->findOneBy(['tagId' => $tagId]);
+        
+        if($tagPoint) {
+            $points = $tagPoint->getPoints() + 1;
+            $tagPoint->setUpdatedAt();
+            $tagPoint->setPoints($points);
+        }  else {
+            $pars['points'] = 1;
+            $tagPoint = new $this->entityPoint($pars);
+        }
+
+        $this->em->persist($tagPoint);
+        $this->em->flush();
+
+        return true;
+    }
+
+    /**
+     * @param int $tagId
+     * @return Tag|false
+     */
+    public function checkTagById(int $tagId)
+    {
+        $tagId = $pars['tag_id'];
+        $entity = $this->em->getRepository($this->entity)
+                           ->findOneBy(['id' => $tagId, 'userId' => $this->userId]);
+
+        return $entity;                   
+    }
+
 
     /**
      * @return int
