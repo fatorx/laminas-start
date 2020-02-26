@@ -12,4 +12,5 @@ return [
     'DoctrineORMModule',
     'Application',
     'Tags',
+    'Users',
 ];

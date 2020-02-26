@@ -52,10 +52,18 @@ class ApiController extends AbstractRestfulController
     public function checkAuthorization($event)
     {
         $request = $event->getRequest();
+        $method  = $request->getMethod();
+        
         $response = $event->getResponse();
         $isAuthorizationRequired = $event->getRouteMatch()->getParam('isAuthorizationRequired');
+        $methods = $event->getRouteMatch()->getParam('methodsAuthorization');
         $config = $event->getApplication()->getServiceManager()->get('Config');
         $event->setParam('config', $config);
+
+        if (!in_array($method, $methods)) {
+            return;
+        }
+        
         if (isset($config['ApiRequest'])) {
             $responseStatusKey = $config['ApiRequest']['responseFormat']['statusKey'];
             if (!$isAuthorizationRequired) {

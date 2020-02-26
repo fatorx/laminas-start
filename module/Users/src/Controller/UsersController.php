@@ -1,6 +1,6 @@
 <?php
 
-namespace Tags\Controller;
+namespace Users\Controller;
 
 use Laminas\Mvc\Controller\AbstractRestfulController;
 use Laminas\ServiceManager\ServiceManager;
@@ -8,20 +8,20 @@ use Laminas\View\Model\JsonModel;
 use Laminas\Http\Request;
 
 use Application\Controller\ApiController;
-use Tags\Service\TagService;
+use Users\Service\UserService;
 
 /**
- * Class TagsController
- * @package Tags\Controller
+ * Class UsersController
+ * @package Users\Controller
  */
-class TagsController extends ApiController
+class UsersController extends ApiController
 {
     /** 
-     * @var TagService $service 
+     * @var UserService $service 
      */
     protected $service;
 
-    public function __construct(TagService $service)
+    public function __construct(UserService $service)
     {
         $this->service = $service;
     }
@@ -35,27 +35,12 @@ class TagsController extends ApiController
     /**
      * @return JsonModel
      */
-    public function getList()
-    {
-        $this->preLoadMethod();        
-        $list = $this->service->getList();
-
-        $data = [
-            'list'   => $list,
-            'action' => 'get',
-        ];
-        return $this->createResponse($data);
-    }
-
-    /**
-     * @return JsonModel
-     */
     public function get($id)
     {
         $this->preLoadMethod();
         $item = $this->service->getItem((int)$id);
         if (empty($item)) {
-            $this->httpStatusCode = 404;
+            $this->httpStatusCode = 400;
         }
         $data = [
             'tag'    => $item,
@@ -69,7 +54,6 @@ class TagsController extends ApiController
      */
     public function create($data)
     {
-        $this->preLoadMethod();
         $status = $this->service->create($data);
         $id     = $this->service->getId();
         if (!$status) {
@@ -90,26 +74,14 @@ class TagsController extends ApiController
     public function update($id, $data)
     {
         $this->preLoadMethod();
-        $item = $this->service->update((int)$id, $data);
-        if (empty($item)) {
-            $this->httpStatusCode = 404;
-        }
-
+        $item   = $this->service->update((int)$id, $data);
+        $status = $this->service->getStatus();
+        
+        $this->httpStatusCode = ($status ? $this->httpStatusCode : 400);
         $data = [
             'item'   => $item,
+            'status' => $status,
             'action' => 'update'
-        ];
-        return $this->createResponse($data);
-    }
-     
-    /**
-     * @return JsonModel
-     */
-    public function replaceList($data)
-    {   
-        $this->preLoadMethod();
-        $data = [
-            'action' => 'replaceList'
         ];
         return $this->createResponse($data);
     }

@@ -31,23 +31,12 @@ return [
                     ],
                 ],
             ],
-            'token' => [
-                'type'    => Literal::class,
-                'options' => [
-                    'route'    => '/token',
-                    'defaults' => [
-                        'controller' => Controller\AccessController::class,
-                        'action' => 'token',
-                    ],
-                ],
-            ],
         ],
     ],
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
             Controller\RouteNotFoundController::class => InvokableFactory::class,
-            Controller\AccessController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [

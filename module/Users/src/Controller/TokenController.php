@@ -1,8 +1,11 @@
 <?php
 
-namespace Application\Controller;
+namespace Users\Controller;
 
-class AccessController extends ApiController
+use Application\Controller\ApiController;
+use Users\Service\UserService;
+
+class TokenController extends ApiController
 {
     public function tokenAction()
     {

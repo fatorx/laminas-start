@@ -23,13 +23,15 @@
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
-            "Tags\\": "module/Tags/src/"
+            "Tags\\": "module/Tags/src/",
+            "Users\\": "module/Users/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "ApplicationTest\\": "module/Application/test/",
-            "TagsTest\\": "module/Tags/test/"
+            "TagsTest\\": "module/Tags/test/",
+            "UsersTest\\": "module/Users/test/"
         }
     },
     "scripts": {
