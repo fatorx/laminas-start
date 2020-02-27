@@ -44,7 +44,7 @@ return [
             'pageNotFoundKey' => 'Request Not Found.'
         ],
         'jwtAuth' => [
-            'cypherKey' => 'R1a#2%dY2fX@3g8r5&s4Kf6*sd(5dHs!5gD4s',
+            'cypherKey' => 'your_cypher_key',
             'tokenAlgorithm' => 'HS256'
         ],
     ]

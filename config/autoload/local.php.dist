@@ -12,5 +12,40 @@
  * credentials from accidentally being committed into version control.
  */
 
+use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
+
 return [
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'driverClass' => PDOMySqlDriver::class,
+                'params' => [
+                    'host'      => 'host',
+                    'dbname'    => 'database',
+                    'user'      => 'user',
+                    'password'  => 'password',
+                    'port' => '3306',
+                    
+                ]
+            ],            
+        ],        
+    ],
+    'ApiRequest' => [
+        'responseFormat' => [
+            'statusKey' => 'status',
+            'statusOkText' => 'OK',
+            'statusNokText' => 'NOK',
+            'resultKey' => 'result',
+            'messageKey' => 'message',
+            'defaultMessageText' => 'Empty response!',
+            'errorKey' => 'error',
+            'defaultErrorText' => 'Unknown request!',
+            'authenticationRequireText' => 'Authentication Required.',
+            'pageNotFoundKey' => 'Request Not Found.'
+        ],
+        'jwtAuth' => [
+            'cypherKey' => 'your_cypher_key',
+            'tokenAlgorithm' => 'HS256'
+        ],
+    ]
 ];

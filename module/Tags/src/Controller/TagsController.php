@@ -37,8 +37,11 @@ class TagsController extends ApiController
      */
     public function getList()
     {
-        $this->preLoadMethod();        
-        $list = $this->service->getList();
+        $this->preLoadMethod();   
+        $date  = $this->params()->fromQuery('date', (new \Datetime())->format('Y-m-d'));
+        $limit = $this->params()->fromQuery('limit', 10);
+        
+        $list = $this->service->getList($date, $limit);
 
         $data = [
             'list'   => $list,

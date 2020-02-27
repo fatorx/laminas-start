@@ -43,18 +43,15 @@ class Tag
     protected $slug;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @ORM\Column(name="creation_date", type="date", nullable=true)
      */
-    protected $createdAt;
+    protected $creationDate;
 
-     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+    /**
+     * @ORM\Column(name="creation_time", type="time", nullable=true)
      */
-    protected $updatedAt;
+    private $creationTime;
+
 
     /**
      * Cartao constructor.
@@ -64,8 +61,8 @@ class Tag
     {
         if (!empty($input)) {
             $this->exchangeArray($input);
-            $this->createdAt = new \Datetime();
-            $this->updatedAt = new \Datetime();
+            $this->creationDate = new \Datetime();
+            $this->creationTime = new \Datetime();
         }
     }
 
@@ -85,8 +82,8 @@ class Tag
     public function toArray()
     {
         $extractData =  (new ClassMethods(true))->extract($this);
-        unset($extractData['created_at']);
-        unset($extractData['updated_at']);
+        //unset($extractData['created_at']);
+        //unset($extractData['updated_at']);
         return $extractData;
     }
 
@@ -173,60 +170,42 @@ class Tag
     /**
      * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreationDate(): \DateTime
     {
-        return $this->createdAt;
+        return $this->creationDate;
     }
 
     /**
      * @return string
      */
-    public function getCreatedAtFormat(): string
+    public function setCreationDate(): string
     {
-        $createdAt = $this->createdAt;
+        $creationDate = $this->creationDate;
 
-        if ($createdAt instanceof \DateTime) {
-            $createdAt = $createdAt->format('Y-m-d H:i:s');
+        if ($creationDate instanceof \DateTime) {
+            $creationDate = $creationDate->format('Y-m-d H:i:s');
         }
-        return (string)$createdAt;
-    }
-
-    /**
-     * @return self
-     */
-    public function setCreatedAt(): Tag
-    {
-        $this->createdAt = (new \DateTime)->format('Y-m-d H:i:s');
-        return $this;
+        return (string)$creationDate;
     }
 
     /**
      * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getCreationTime(): \DateTime
     {
-        return $this->updatedAt;
-    }   
+        return $this->creationTime;
+    }
 
     /**
      * @return string
      */
-    public function getUpdatedAtFormat(): string
+    public function setCreationTime(): string
     {
-        $updatedAt = $this->updatedAt;
+        $creationTime = $this->creationTime;
 
-        if ($updatedAt instanceof \DateTime) {
-            $updatedAt = $updatedAt->format('Y-m-d H:i:s');
+        if ($creationTime instanceof \DateTime) {
+            $creationTime = $creationTime->format('Y-m-d H:i:s');
         }
-        return (string)$updatedAt;
-    }
-
-    /**
-     * @return self
-     */
-    public function setUpdatedAt(): Tag
-    {
-        $this->updatedAt = new \DateTime();
-        return $this;
+        return (string)$creationTime;
     }
 }

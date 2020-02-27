@@ -56,13 +56,16 @@ class TagService extends BaseService
     }
 
     /**
+     * @param string $date 
      * @param int $limit = 10 
      * @return array
      */
-    public function getList(int $limit = 10) : array
+    public function getList(string $date, int $limit = 10) : array
     {
+        $dateTime = new \Datetime($date);
+        $pars = ['creationDate' => $dateTime, 'userId' => $this->userId];
         $tags = $this->em->getRepository($this->entity)
-                         ->findBy(['userId' => $this->userId]); 
+                         ->findBy($pars, [], $limit); 
         if ($tags) {
             $list = [];
             foreach ($tags as $tag) {
@@ -78,7 +81,7 @@ class TagService extends BaseService
      */
     public function getListTags() : array
     {
-        $sql = ' SELECT id, user_id, name, slug, created_at, updated_at FROM tags LIMIT 10 ';
+        $sql = ' SELECT id, user_id, name, slug, creation_date, creation_time FROM tags LIMIT 10 ';
         return $this->executeSql($sql, "all");
     }
 
@@ -112,7 +115,7 @@ class TagService extends BaseService
     public function validCreate(array $pars) : bool
     {
         $sqlModel  = ' SELECT t FROM '.$this->entity.' t 
-                       WHERE t.createdAt > CURRENT_DATE()
+                       WHERE t.creationDate > CURRENT_DATE()
                        AND t.slug = :slug
                        AND t.userId = :userId ';
         $query = $this->em->createQuery($sqlModel);
