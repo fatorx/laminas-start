@@ -26,12 +26,6 @@ class UsersController extends ApiController
         $this->service = $service;
     }
 
-    public function preLoadMethod()
-    {
-        $userId = $this->getPayload()->getSub();
-        $this->service->setUserId($userId);
-    }
-
     /**
      * @return JsonModel
      */
@@ -43,7 +37,7 @@ class UsersController extends ApiController
             $this->httpStatusCode = 400;
         }
         $data = [
-            'tag'    => $item,
+            'user'    => $item,
             'method' => 'get'
         ];
         return $this->createResponse($data);
@@ -104,5 +98,14 @@ class UsersController extends ApiController
             'action' => 'delete',
         ];
         return $this->createResponse($data);
+    }
+
+    /**
+     * @return void
+     */
+    public function preLoadMethod()
+    {
+        $userId = $this->getPayload()->getSub();
+        $this->service->setUserId($userId);
     }
 }

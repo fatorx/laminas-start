@@ -44,3 +44,11 @@ Obs: verificar versão do doctrine para o Laminas.
 
 Rodar na raiz do projeto
 vendor/bin/doctrine-module orm:schema-tool:update --force --dump-sql
+
+/*
+    sub (subject) = Entidade à quem o token pertence, normalmente o ID do usuário;
+    iss (issuer) = Emissor do token;
+    exp (expiration) = Timestamp de quando o token irá expirar;
+    iat (issued at) = Timestamp de quando o token foi criado;
+    aud (audience) = Destinatário do token, representa a aplicação que irá usá-lo.
+*/  

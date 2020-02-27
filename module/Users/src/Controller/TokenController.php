@@ -3,31 +3,42 @@
 namespace Users\Controller;
 
 use Application\Controller\ApiController;
-use Users\Service\UserService;
+use Users\Service\TokenService;
 
 class TokenController extends ApiController
 {
-    public function tokenAction()
-    {
-        $pars = $this->processBodyContent($this->getRequest());
-        
-        /**
-         * process your data and validate it against database table
-         */
+    /** 
+     * @var TokenService $service 
+     */
+    protected $service;
 
-         /*
-            sub (subject) = Entidade à quem o token pertence, normalmente o ID do usuário;
-            iss (issuer) = Emissor do token;
-            exp (expiration) = Timestamp de quando o token irá expirar;
-            iat (issued at) = Timestamp de quando o token foi criado;
-            aud (audience) = Destinatário do token, representa a aplicação que irá usá-lo.
-        */  
+    public function __construct(TokenService $service)
+    {
+        $this->service = $service;
+    }
+
+    public function indexAction()
+    {
+        $appKey = $this->getRequest()->getHeaders()
+                       ->get('App-Key')->getFieldValue(); 
+                            
+        $pars = $this->processBodyContent($this->getRequest());
+        $user = $this->service->checkUser($pars); 
         
-        // generate token if valid user
+        if (!$user) {
+            $this->httpStatusCode = 400;
+            $data = [];
+            $data['message'] = 'Not Logged.';
+            return $this->createResponse($data);
+        }
+        
         $payload = [
-            'sub' => 1, 
-            'name' => 'Fabio de Souza', 
-            'admin' => false
+            'sub'   => $user->getId(), 
+            'name'  => $user->getName(),
+            'admin' => false,
+            'issued_at'  => $this->service->getIssuedAt(),
+            'expiration' => $this->service->getExpiration(),
+            'audience'   => $this->service->getAudience(),
         ];
 
         $data = [];
@@ -35,6 +46,5 @@ class TokenController extends ApiController
         $data['message'] = 'Logged in successfully.';
 
         return $this->createResponse($data);
-
     }
 }

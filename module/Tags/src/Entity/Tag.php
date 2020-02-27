@@ -85,7 +85,8 @@ class Tag
     public function toArray()
     {
         $extractData =  (new ClassMethods(true))->extract($this);
-        
+        unset($extractData['created_at']);
+        unset($extractData['updated_at']);
         return $extractData;
     }
 

@@ -12,7 +12,7 @@ use Users\Entity\User;
 
 /**
  * Class UserService
- * @package Tags\Service
+ * @package Users\Service
  */
 class UserService extends BaseService
 {
@@ -40,8 +40,12 @@ class UserService extends BaseService
      */
     public function getItem(int $id) : array
     {
+        if ($this->userId != $id) {
+            return [];
+        }
+
         $user = $this->em->getRepository($this->entity)
-                        ->findOneBy(['id' => $this->userId]); 
+                         ->findOneBy(['id' => $this->userId]); 
         if ($user) {
             return $user->toArray();
         }
@@ -94,19 +98,14 @@ class UserService extends BaseService
      */
     public function update(int $id, array $pars) : array
     {
-        try {
-            $entityRef = $this->em->find($this->entity, $id);
-        } catch(\Exception $e) {
-            echo $e->getMessage(); exit();
-        }
-        
+        $entityRef = $this->em->find($this->entity, $id);
         if (!$entityRef) {
             $this->status = false;
             return [];
         }
         $pars['name'] = $this->filterName($pars['name']);
         $pars['nickname'] = $this->filterName($pars['nickname']);
-        
+
         $this->status = $this->validUpdate($id, $pars);
         if (!$this->status) {
             return [];
@@ -158,67 +157,21 @@ class UserService extends BaseService
     /**
      * @param int $id
      */
-    public function delete(int $id) : Tag
+    public function delete(int $id)
     {
+        if ($this->userId != $id) {
+            return false;
+        }
+
         $entity = $this->em->getRepository($this->entity)
-                           ->findOneBy(['id' => $id, 'userId' => $this->userId]);
+                           ->findOneBy(['id' => $this->userId]);
         
         if($entity) {
             $this->em->remove($entity);
-
-            $tagPoint = $this->em->getRepository($this->entityPoint)
-                             ->findOneBy(['tagId' => $tagId]);
-            $this->em->remove($tagPoint);
-            
             $this->em->flush();                 
         }  
         return $entity;          
     }
-
-    /**
-     * @param array $pars
-     * @return bool
-     */
-    public function createOrUpdatePoints(array $pars) : bool
-    {
-        $tagId = (int)$pars['tag_id'];
-        $entity = $this->checkTagById($tagId);
-
-        if (!$entity) {
-            return false;
-        }                
-
-        $tagPoint = $this->em->getRepository($this->entityPoint)
-                             ->findOneBy(['tagId' => $tagId]);
-        
-        if($tagPoint) {
-            $points = $tagPoint->getPoints() + 1;
-            $tagPoint->setUpdatedAt();
-            $tagPoint->setPoints($points);
-        }  else {
-            $pars['points'] = 1;
-            $tagPoint = new $this->entityPoint($pars);
-        }
-
-        $this->em->persist($tagPoint);
-        $this->em->flush();
-
-        return true;
-    }
-
-    /**
-     * @param int $tagId
-     * @return Tag|false
-     */
-    public function checkTagById(int $tagId)
-    {
-        $tagId = $pars['tag_id'];
-        $entity = $this->em->getRepository($this->entity)
-                           ->findOneBy(['id' => $tagId, 'userId' => $this->userId]);
-
-        return $entity;                   
-    }
-
 
     /**
      * @return int
@@ -227,4 +180,4 @@ class UserService extends BaseService
     {
         return $this->id;
     }
-}    
+}

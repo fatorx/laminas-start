@@ -17,7 +17,7 @@ return [
                     'route'    => '/token',
                     'defaults' => [
                         'controller' => Controller\TokenController::class,
-                        'action' => 'token',
+                        'action' => 'index',
                     ],
                 ],
             ],
@@ -28,7 +28,7 @@ return [
                     'defaults' => [
                         'controller'    => Controller\UsersController::class,
                         'isAuthorizationRequired' => true, 
-                        'methodsAuthorization'    => ['GET', 'PUT'], 
+                        'methodsAuthorization'    => ['GET', 'PUT', 'DELETE'], 
                     ],
                     'constraints' => [
                         'formatter' => '[a-zA-Z0-9_-]*',
@@ -39,14 +39,14 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\TokenController::class => InvokableFactory::class,
+            Controller\TokenController::class => Controller\Factory\TokenControllerFactory::class,
             Controller\UsersController::class => Controller\Factory\UsersControllerFactory::class,
         ],
     ],
     'view_manager' => [
-        'strategies' => array(
+        'strategies' => [
             'ViewJsonStrategy',
-        )
+        ]
     ],
     'doctrine' => [
         'driver' => [

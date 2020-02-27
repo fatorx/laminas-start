@@ -60,7 +60,7 @@ class ApiController extends AbstractRestfulController
         $config = $event->getApplication()->getServiceManager()->get('Config');
         $event->setParam('config', $config);
 
-        if (!in_array($method, $methods)) {
+        if (!empty($methods) && !in_array($method, $methods)) {
             return;
         }
         

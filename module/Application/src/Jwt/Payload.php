@@ -6,24 +6,27 @@ class Payload
 {
     private $sub;
 
-    private $iss;
+    private $name;
 
-    private $exp;
+    private $admin;
 
-    private $iat;
+    private $issuedAt;
 
-    private $aud;
+    private $expiration;
 
+    private $audience;
+    
     /**
      * @param object $data
      */
     public function __construct(\stdClass $data)
     {   
         $this->sub = isset($data->sub) ? $data->sub : '';
-        $this->iss = isset($data->iss) ? $data->iss : '';
-        $this->exp = isset($data->exp) ? $data->exp : '';
-        $this->iat = isset($data->iat) ? $data->iat : '';
-        $this->aud = isset($data->aud) ? $data->aud : '';
+        $this->name = isset($data->name) ? $data->name : '';
+        $this->admin = isset($data->admin) ? $data->admin : '';
+        $this->issuedAt = isset($data->issued_at) ? $data->issued_at : '';
+        $this->expiration = isset($data->expiration) ? $data->expiration : '';
+        $this->audience = isset($data->audience) ? $data->audience : '';
     }
 
     /**
@@ -45,79 +48,105 @@ class Payload
         return $this;
     }
 
+
+
     /**
-     * Get the value of iss
+     * Get the value of name
      */ 
-    public function getIss()
+    public function getName()
     {
-        return $this->iss;
+        return $this->name;
     }
 
     /**
-     * Set the value of iss
+     * Set the value of name
      *
      * @return  self
      */ 
-    public function setIss($iss)
+    public function setName($name)
     {
-        $this->iss = $iss;
+        $this->name = $name;
+
         return $this;
     }
 
     /**
-     * Get the value of exp
+     * Get the value of admin
      */ 
-    public function getExp()
+    public function getAdmin()
     {
-        return $this->exp;
+        return $this->admin;
     }
 
     /**
-     * Set the value of exp
+     * Set the value of admin
      *
      * @return  self
      */ 
-    public function setExp($exp)
+    public function setAdmin($admin)
     {
-        $this->exp = $exp;
+        $this->admin = $admin;
+
         return $this;
     }
 
     /**
-     * Get the value of iat
+     * Get the value of issuedAt
      */ 
-    public function getIat()
+    public function getIssuedAt()
     {
-        return $this->iat;
+        return $this->issuedAt;
     }
 
     /**
-     * Set the value of iat
+     * Set the value of issuedAt
      *
      * @return  self
      */ 
-    public function setIat($iat)
+    public function setIssuedAt($issuedAt)
     {
-        $this->iat = $iat;
+        $this->issuedAt = $issuedAt;
+
         return $this;
     }
 
     /**
-     * Get the value of aud
+     * Get the value of expiration
      */ 
-    public function getAud()
+    public function getExpiration()
     {
-        return $this->aud;
+        return $this->expiration;
     }
 
     /**
-     * Set the value of aud
+     * Set the value of expiration
      *
      * @return  self
      */ 
-    public function setAud($aud)
+    public function setExpiration($expiration)
     {
-        $this->aud = $aud;
+        $this->expiration = $expiration;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of audience
+     */ 
+    public function getAudience()
+    {
+        return $this->audience;
+    }
+
+    /**
+     * Set the value of audience
+     *
+     * @return  self
+     */ 
+    public function setAudience($audience)
+    {
+        $this->audience = $audience;
+
         return $this;
     }
 }

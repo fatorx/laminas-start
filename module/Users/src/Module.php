@@ -10,6 +10,7 @@ use Laminas\Escaper\Escaper;
 use Doctrine\ORM\EntityManager;
 
 use Users\Service\UserService;
+use Users\Service\TokenService;
 
 class Module
 {
@@ -54,6 +55,12 @@ class Module
                     $entityManager = $serviceManager->get(EntityManager::class);
                     $userService->setEm($entityManager);
                     return $userService;
+                },
+                TokenService::class => function(ServiceManager $serviceManager) {
+                    $tokenService = new TokenService();
+                    $entityManager = $serviceManager->get(EntityManager::class);
+                    $tokenService->setEm($entityManager);
+                    return $tokenService;
                 }
             ]
         ];
