@@ -34,13 +34,15 @@ if (! class_exists(Application::class)) {
 
 function d($d)
 {
+    
     echo '<pre>';
     var_dump($d);
     echo '</pre>';
     exit();
 }
 function met($d)
-{
+{   
+    echo get_class($d);
     d(get_class_methods(get_class($d)));
 }
 

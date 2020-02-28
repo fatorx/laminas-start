@@ -39,9 +39,10 @@ class TagsController extends ApiController
     {
         $this->preLoadMethod();   
         $date  = $this->params()->fromQuery('date', (new \Datetime())->format('Y-m-d'));
+        $str   = $this->params()->fromQuery('str', '');
         $limit = $this->params()->fromQuery('limit', 10);
         
-        $list = $this->service->getList($date, $limit);
+        $list = $this->service->getList($date, $str, $limit);
 
         $data = [
             'list'   => $list,

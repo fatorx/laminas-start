@@ -1,0 +1,711 @@
+{
+	"info": {
+		"_postman_id": "7eae1384-81ea-44fa-afa8-e423db1afc33",
+		"name": "MIND_LIST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TOKEN",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7a03e690-2e65-4f13-9417-5068edb2b849",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "537e5c96-9309-4b5c-b87d-700fcacc7185",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.globals.set(\"token\", jsonData.result.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "312431243fsdffsfsdfsdfsdfsd",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "app-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"{{username}}\",\n\t\"password\":\"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USERS_GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bda78e7-7421-4e86-8e45-47d3861b9d79",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"if (jsonData.result.list.length > 0) {",
+							"   pm.globals.set(\"user_id\", jsonData.result.user.id);        ",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/{{user_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USERS_POST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bda78e7-7421-4e86-8e45-47d3861b9d79",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"if (jsonData.status == 'OK') {",
+							"   pm.globals.set(\"user_id\", jsonData.result.id);        ",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "312431243fsdffsfsdfsdfsdfsd",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "app-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Fabio de Souza Mendes\",\n\t\"nickname\":\"fabiosmendes\",\n\t\"email\":\"{{username}}\",\n\t\"password\":\"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USERS_DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bda78e7-7421-4e86-8e45-47d3861b9d79",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/{{user_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USERS_PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bda78e7-7421-4e86-8e45-47d3861b9d79",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Fabio de Souza Mendes\",\n\t\"nickname\":\"fabiosmendes\",\n\t\"email\":\"{{username}}\",\n\t\"password\":\"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TAGS_LIST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5d2b214-c294-4de4-ae59-eca7b6ceaffd",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"if (jsonData.result.list.length > 0) {",
+							"   pm.globals.set(\"tag_id\", jsonData.result.list[0].id);        ",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/tags",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tags"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TAGS_LIST_FILTERS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5d2b214-c294-4de4-ae59-eca7b6ceaffd",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"if (jsonData.result.list.length > 0) {",
+							"   pm.globals.set(\"tag_id\", jsonData.result.list[0].id);        ",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/tags?date=2020-02-27&limit=5&str=Docker",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tags"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-02-27"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "str",
+							"value": "Docker"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TAGS_GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dadba5be-8f31-414e-bf92-b829f4299de0",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/tags/{{tag_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tags",
+						"{{tag_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TAGS_POST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bda78e7-7421-4e86-8e45-47d3861b9d79",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"if (jsonData.status) {",
+							"   pm.globals.set(\"tag_id\", jsonData.id);        ",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user_id\":\"{{user_id}}\",\n\t\"name\":\"Typescript\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/tags",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tags"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TAGS_PUT",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":{{tag_id}},\n\t\"name\":\"Programação funcional\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/tags/{{tag_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tags",
+						"{{tag_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TAGS_DELETE",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "cf5c3fc3-d3d4-4c61-a4af-ccfebdf8a005",
+						"exec": [
+							"//pm.sendRequest(\"http://192.168.20.22:9085/tags\", function (err, response) {",
+							"    //console.log(response.json());",
+							"//    console.log(response);",
+							"//});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/tags/{{tag_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tags",
+						"{{tag_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TAGS_POINTS_POST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bda78e7-7421-4e86-8e45-47d3861b9d79",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tag_id\":34\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/tags-points",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tags-points"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

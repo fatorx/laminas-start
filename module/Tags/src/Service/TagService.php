@@ -56,11 +56,81 @@ class TagService extends BaseService
     }
 
     /**
+     * Query builder
+     * 
+     * @param string $date 
+     * @param string $str 
+     * @param int $limit = 10 
+     * @return array
+     */
+    public function getList(string $date, string $str, int $limit = 10) : array
+    {
+        $query = $this->em->getRepository($this->entity)
+                          ->createQueryBuilder('t');
+
+        $query->where('t.creationDate = :date')
+              ->setParameter('date', $date);
+
+        $query->where('t.userId = :userId')
+              ->setParameter('date', $date);
+
+        if ($str != '' ) {
+            $query->andWhere('t.name like :par')
+                  ->setParameter('par', '%' . $str . '%')
+            ;
+        }
+
+        $tags = $query->getQuery()->setFirstResult(0)
+                                  ->setMaxResults(10)
+                                  ->getResult();
+
+        if ($tags) {
+            $list = [];
+            foreach ($tags as $tag) {
+                $list[] = $tag->toArray();
+            }
+            return $list;
+        }
+        return [];
+    }
+
+    /**
+     * @param string $date 
+     * @param string $str 
+     * @param int $limit = 10 
+     * @return array
+     */
+    public function getListDql(string $date, string $str, int $limit = 10) : array
+    {
+        $sqlModel   = ' SELECT t FROM '.$this->entity.' t '; 
+        $sqlModel  .= ' WHERE t.id > 0 ';
+        $sqlModel  .= ' AND   t.creationDate = :date ';
+        $sqlModel  .= ' AND   t.userId = :user_id ';
+        $sqlModel  .= ' AND t.name LIKE :name ';
+        
+        $query = $this->em->createQuery($sqlModel);
+
+        $query->setParameter('date', $date);
+        $query->setParameter('user_id', $this->userId);
+        $query->setParameter('name', '%' . $str . '%');
+        $tags = $query->getResult();
+
+        if ($tags) {
+            $list = [];
+            foreach ($tags as $tag) {
+                $list[] = $tag->toArray();
+            }
+            return $list;
+        }
+        return [];
+    }
+
+    /**
      * @param string $date 
      * @param int $limit = 10 
      * @return array
      */
-    public function getList(string $date, int $limit = 10) : array
+    public function getListRepository(string $date, string $str, int $limit = 10) : array
     {
         $dateTime = new \Datetime($date);
         $pars = ['creationDate' => $dateTime, 'userId' => $this->userId];
@@ -79,7 +149,7 @@ class TagService extends BaseService
     /**
      * @return array
      */
-    public function getListTags() : array
+    public function getListRawQuery() : array
     {
         $sql = ' SELECT id, user_id, name, slug, creation_date, creation_time FROM tags LIMIT 10 ';
         return $this->executeSql($sql, "all");

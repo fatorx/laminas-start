@@ -81,8 +81,8 @@ class UserService extends BaseService
      */
     public function validCreate(array $pars) : bool
     {
-        $sqlModel  = ' SELECT t FROM '.$this->entity.' t 
-                       WHERE t.email = :email ';
+        $sqlModel  = ' SELECT u FROM '.$this->entity.' u 
+                       WHERE u.email = :email ';
         $query = $this->em->createQuery($sqlModel);
 
         $query->setParameter('email', $pars['email']);
@@ -127,9 +127,9 @@ class UserService extends BaseService
      */
     public function validUpdate(int $id, array $pars) : bool
     {
-        $sqlModel  = ' SELECT t FROM '.$this->entity.' t 
-                       WHERE t.email = :email 
-                       AND t.id <> :id';
+        $sqlModel  = ' SELECT u FROM '.$this->entity.' u 
+                       WHERE u.email = :email 
+                       AND u.id <> :id';
         $query = $this->em->createQuery($sqlModel);
 
         $query->setParameter('id', $pars['id']);
