@@ -2,8 +2,13 @@
 
 namespace Application;
 
-use Zend\Mvc\MvcEvent;
+use Laminas\ModuleManager\Feature\AutoloaderProviderInterface;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\EventManager\EventInterface;
+use Laminas\Mvc\MvcEvent;
+use Doctrine\ORM\EntityManager;
 
+use Application\Service\RequestResponseService;
 class Module
 {
     const VERSION = '3.0.3-dev';
@@ -17,13 +22,21 @@ class Module
      * 
      * @param \Zend\Mvc\MvcEvent $e
      */
-    public function onBootstrap(MvcEvent $e)
+    public function onBootstrap(EventInterface $e)
     {
+        $data = (new \Datetime())->format('Y-m-d H:i:s');
+
+        $e->getApplication()->getEventManager()->attach(MvcEvent::EVENT_FINISH, function ($e) use ($data) {
+            $serviceManager = $e->getApplication()->getServiceManager();
+            $reqResService = $serviceManager->get(RequestResponseService::class);
+            $reqResService->register($e->getApplication(), $data);
+        });
+        
         // Allow from any origin
         if (isset($_SERVER['HTTP_ORIGIN'])) {
             header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
             header('Access-Control-Allow-Credentials: true');
-            header('Access-Control-Max-Age: 86400');    // cache for 1 day
+            header('Access-Control-Max-Age: 86400');
         }
 
         // Access-Control headers are received during OPTIONS requests
@@ -44,6 +57,12 @@ class Module
     {
         return [
             'factories' => [
+                RequestResponseService::class => function(ServiceManager $serviceManager) {
+                    $reqResService = new RequestResponseService();
+                    $entityManager = $serviceManager->get(EntityManager::class);
+                    $reqResService->setEm($entityManager);
+                    return $reqResService;
+                }
             ]
         ];
     }        

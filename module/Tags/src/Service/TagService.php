@@ -261,7 +261,7 @@ class TagService extends BaseService
      * @return bool
      */
     public function createOrUpdatePoints(array $pars) : bool
-    {
+    {   
         $tagId = (int)$pars['tag_id'];
         $entity = $this->checkTagById($tagId);
 
@@ -293,10 +293,9 @@ class TagService extends BaseService
      */
     public function checkTagById(int $tagId)
     {
-        $tagId = $pars['tag_id'];
         $entity = $this->em->getRepository($this->entity)
                            ->findOneBy(['id' => $tagId, 'userId' => $this->userId]);
-
+                
         return $entity;                   
     }
 

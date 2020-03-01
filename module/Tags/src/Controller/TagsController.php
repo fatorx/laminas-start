@@ -46,7 +46,6 @@ class TagsController extends ApiController
 
         $data = [
             'list'   => $list,
-            'action' => 'get',
         ];
         return $this->createResponse($data);
     }
@@ -63,7 +62,6 @@ class TagsController extends ApiController
         }
         $data = [
             'tag'    => $item,
-            'method' => 'get'
         ];
         return $this->createResponse($data);
     }
@@ -83,7 +81,6 @@ class TagsController extends ApiController
         $data = [
             'status' => $status,
             'id'     => $id,
-            'action' => 'create'
         ];
         return $this->createResponse($data);
     }
@@ -101,7 +98,6 @@ class TagsController extends ApiController
 
         $data = [
             'item'   => $item,
-            'action' => 'update'
         ];
         return $this->createResponse($data);
     }
@@ -133,7 +129,6 @@ class TagsController extends ApiController
         $data = [
             'status' => $status,
             'id' => $id,
-            'action' => 'delete',
         ];
         return $this->createResponse($data);
     }

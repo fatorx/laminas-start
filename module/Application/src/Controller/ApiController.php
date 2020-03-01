@@ -204,6 +204,7 @@ class ApiController extends AbstractRestfulController
         } 
 
         $sendResponse[$config['ApiRequest']['responseFormat']['resultKey']] = $apiResponse;
+        $sendResponse['request_time'] = (new \Datetime())->format('Y-m-d H:i:s.u');
         return new JsonModel($sendResponse);
     }
 }

@@ -4,13 +4,15 @@ namespace Tags;
 
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\EventManager\EventInterface;
-use Laminas\EventManager\EventManager;
-use Laminas\Mvc\MvcEvent;
+
 use Laminas\Escaper\Escaper;
 use Doctrine\ORM\EntityManager;
 
-
 use Tags\Service\TagService;
+
+class User {
+
+}
 
 class Module
 {
@@ -25,7 +27,8 @@ class Module
     public function onBootstrap(EventInterface $e)
     {
         
-    }
+
+    }    
 
     public function getServiceConfig()
     {

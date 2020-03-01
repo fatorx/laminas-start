@@ -33,8 +33,8 @@ return [
     'ApiRequest' => [
         'responseFormat' => [
             'statusKey' => 'status',
-            'statusOkText' => 'OK',
-            'statusNokText' => 'NOK',
+            'statusOkText' => true,
+            'statusNokText' => false,
             'resultKey' => 'result',
             'messageKey' => 'message',
             'defaultMessageText' => 'Empty response!',

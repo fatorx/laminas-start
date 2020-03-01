@@ -63,6 +63,23 @@ class BaseService
     }
 
     /**
+     * @param $table
+     * @param $data
+     * @return bool
+     */
+    public function insert($table, $data)
+    {
+        $status = true;
+        try {
+            $this->em->getConnection()->insert($table, $data);
+        } catch (\Exception $e) {
+            //$this->logError(__CLASS__, __METHOD__, $e->getMessage());
+            $status = false;
+        }
+        return $status;
+    }
+
+    /**
      * @return bool
      */
     public function getStatus() : bool
@@ -76,5 +93,13 @@ class BaseService
     public function setUserId($userId)
     {
         $this->userId = $userId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateTime()
+    {
+        return (new \DateTime())->format('Y-m-d H:i:s');
     }
 }    

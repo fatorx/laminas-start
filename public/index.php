@@ -34,7 +34,6 @@ if (! class_exists(Application::class)) {
 
 function d($d)
 {
-    
     echo '<pre>';
     var_dump($d);
     echo '</pre>';

@@ -41,12 +41,10 @@ class TagsPointsController extends ApiController
         $status = $this->service->createOrUpdatePoints($data);
         $id     = $this->service->getId();
         if (!$status) {
-            $this->httpStatusCode = 404;
+            $this->httpStatusCode = 400;
         }
         $data = [
-            'status' => $status,
             'id'     => $id,
-            'action' => 'create'
         ];
         return $this->createResponse($data);
     }
