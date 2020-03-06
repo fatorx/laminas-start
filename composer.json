@@ -18,7 +18,8 @@
         "doctrine/doctrine-module": "^2.1.9",
         "doctrine/doctrine-orm-module": "^2.1",
         "firebase/php-jwt": "^5.0",
-        "cocur/slugify": "^4.0"
+        "cocur/slugify": "^4.0",
+        "laminas/laminas-test": "^3.4"
     },
     "autoload": {
         "psr-4": {

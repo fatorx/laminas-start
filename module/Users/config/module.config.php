@@ -37,12 +37,6 @@ return [
             ],
         ],
     ],
-    'controllers' => [
-        'factories' => [
-            Controller\TokenController::class => Controller\Factory\TokenControllerFactory::class,
-            Controller\UsersController::class => Controller\Factory\UsersControllerFactory::class,
-        ],
-    ],
     'view_manager' => [
         'strategies' => [
             'ViewJsonStrategy',

@@ -8,8 +8,13 @@ use Doctrine\ORM\EntityManager;
  * Class TagService
  * @package Application\Service
  */
-class BaseService
+class BaseService implements IService
 {
+    /**
+     * @var array
+     */
+    protected $config = [];
+
     /**
      * @var EntityManager
      */
@@ -27,6 +32,23 @@ class BaseService
      */
     protected $userId = 0;
 
+    
+    /**
+     * @param array $config
+     */
+    public function setConfig(array $config)
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * @return array
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
     /**
      * @param EntityManager
      */
@@ -35,6 +57,14 @@ class BaseService
         $this->em = $em;
     }
 
+    /**
+     * @return EntityManager
+     */
+    public function getEm()
+    {
+        return $this->em;
+    }
+    
     /**
      * @param $sql
      * @param string $get

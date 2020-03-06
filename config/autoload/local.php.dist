@@ -47,5 +47,8 @@ return [
             'cypherKey' => 'your_cypher_key',
             'tokenAlgorithm' => 'HS256'
         ],
-    ]
+    ],
+    'app' => [
+
+    ],
 ];

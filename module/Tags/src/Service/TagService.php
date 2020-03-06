@@ -68,9 +68,6 @@ class TagService extends BaseService
         $query = $this->em->getRepository($this->entity)
                           ->createQueryBuilder('t');
 
-        $query->where('t.creationDate = :date')
-              ->setParameter('date', $date);
-
         $query->where('t.userId = :userId')
               ->setParameter('date', $date);
 
@@ -81,7 +78,7 @@ class TagService extends BaseService
         }
 
         $tags = $query->getQuery()->setFirstResult(0)
-                                  ->setMaxResults(10)
+                                  ->setMaxResults($limit)
                                   ->getResult();
 
         if ($tags) {
@@ -113,7 +110,9 @@ class TagService extends BaseService
         $query->setParameter('date', $date);
         $query->setParameter('user_id', $this->userId);
         $query->setParameter('name', '%' . $str . '%');
-        $tags = $query->getResult();
+        $tags = $query->setFirstResult(0)
+                      ->setMaxResults($limit)
+                      ->getResult();
 
         if ($tags) {
             $list = [];

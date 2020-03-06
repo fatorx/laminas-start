@@ -9,6 +9,10 @@ use Laminas\Mvc\MvcEvent;
 use Laminas\Escaper\Escaper;
 use Doctrine\ORM\EntityManager;
 
+use Users\Controller\UsersController;
+use Users\Controller\TokenController;
+
+use Application\Service\Config as ConfigService;
 use Users\Service\UserService;
 use Users\Service\TokenService;
 
@@ -51,20 +55,39 @@ class Module
         return [
             'factories' => [
                 UserService::class => function(ServiceManager $serviceManager) {
-                    $userService = new UserService();
-                    $entityManager = $serviceManager->get(EntityManager::class);
-                    $userService->setEm($entityManager);
-                    return $userService;
+                    return (new ConfigService())->setup($serviceManager, new UserService());
                 },
                 TokenService::class => function(ServiceManager $serviceManager) {
-                    $tokenService = new TokenService();
-                    $entityManager = $serviceManager->get(EntityManager::class);
-                    $tokenService->setEm($entityManager);
-                    return $tokenService;
+                    return (new ConfigService())->setup($serviceManager, new TokenService());
                 }
             ]
         ];
     }   
+
+    public function getControllerConfig()
+    {
+        return [
+            'factories' => [
+                UsersController::class => function(ServiceManager $serviceManager) {
+                    $userService = $serviceManager->get(UserService::class);
+
+                    $controller = new UsersController(
+                        $userService
+                    );
+
+                    return $controller;
+                },
+                TokenController::class => function(ServiceManager $serviceManager) {
+                    $tokenService = $serviceManager->get(TokenService::class);
+
+                    $controller = new TokenController(
+                        $tokenService
+                    );
+                    return $controller;
+                }
+            ]
+        ];
+    }
 
     /**
      * Expected to return an array of modules on which the current one depends on

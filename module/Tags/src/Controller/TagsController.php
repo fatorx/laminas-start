@@ -42,7 +42,7 @@ class TagsController extends ApiController
         $str   = $this->params()->fromQuery('str', '');
         $limit = $this->params()->fromQuery('limit', 10);
         
-        $list = $this->service->getList($date, $str, $limit);
+        $list = $this->service->getListDql($date, $str, $limit);
 
         $data = [
             'list'   => $list,
