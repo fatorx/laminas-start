@@ -36,7 +36,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->assertMatchedRouteName('home');
     }
 
-    public function testIndexActionViewModelTemplateRenderedWithinLayout()
+    public function IndexActionViewModelTemplateRenderedWithinLayout()
     {
         $this->dispatch('/', 'GET');
         $this->assertQuery('.container .jumbotron');

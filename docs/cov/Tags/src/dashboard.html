@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/php/app-laminas/module/Tags/src</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../_css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../../_css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="../../_css/style.css" rel="stylesheet" type="text/css">
+  <link href="../../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../../index.html">/var/www/php/app-laminas/module</a></li>
+         <li class="breadcrumb-item"><a href="../index.html">Tags</a></li>
+         <li class="breadcrumb-item"><a href="index.html">src</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/Factory/TagsControllerFactory.php.html#11">Tags\Controller\Factory\TagsControllerFactory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Factory/TagsPointsControllerFactory.php.html#11">Tags\Controller\Factory\TagsPointsControllerFactory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/IndexController.php.html#18">Tags\Controller\IndexController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#17">Tags\Controller\TagsController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsPointsController.php.html#17">Tags\Controller\TagsPointsController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#13">Tags\Entity\Tag</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#13">Tags\Entity\TagPoint</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filter/TagFilter.php.html#9">Tags\Controller\TagFilter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#18">Tags\Service\TagService</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Module.php.html#17">Tags\Module</a></td><td class="text-right">50%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Service/TagService.php.html#18">Tags\Service\TagService</a></td><td class="text-right">702</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#13">Tags\Entity\Tag</a></td><td class="text-right">342</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#13">Tags\Entity\TagPoint</a></td><td class="text-right">342</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#17">Tags\Controller\TagsController</a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="Controller/TagsPointsController.php.html#17">Tags\Controller\TagsPointsController</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Controller/IndexController.php.html#18">Tags\Controller\IndexController</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Filter/TagFilter.php.html#9">Tags\Controller\TagFilter</a></td><td class="text-right">12</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/Factory/TagsControllerFactory.php.html#13"><abbr title="Tags\Controller\Factory\TagsControllerFactory::__invoke">__invoke</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Filter/TagFilter.php.html#11"><abbr title="Tags\Controller\TagFilter::filter">filter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#88"><abbr title="Tags\Entity\TagPoint::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#98"><abbr title="Tags\Entity\TagPoint::setId">setId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#110"><abbr title="Tags\Entity\TagPoint::setTagId">setTagId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#120"><abbr title="Tags\Entity\TagPoint::getPoints">getPoints</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#130"><abbr title="Tags\Entity\TagPoint::setPoints">setPoints</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#140"><abbr title="Tags\Entity\TagPoint::getTagId">getTagId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#148"><abbr title="Tags\Entity\TagPoint::getCreatedAt">getCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#156"><abbr title="Tags\Entity\TagPoint::getCreatedAtFormat">getCreatedAtFormat</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#169"><abbr title="Tags\Entity\TagPoint::setCreatedAt">setCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#178"><abbr title="Tags\Entity\TagPoint::getUpdatedAt">getUpdatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#186"><abbr title="Tags\Entity\TagPoint::getUpdatedAtFormat">getUpdatedAtFormat</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#199"><abbr title="Tags\Entity\TagPoint::setUpdatedAt">setUpdatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#38"><abbr title="Tags\Service\TagService::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#68"><abbr title="Tags\Entity\TagPoint::exchangeArray">exchangeArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#48"><abbr title="Tags\Service\TagService::getItem">getItem</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#66"><abbr title="Tags\Service\TagService::getList">getList</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#100"><abbr title="Tags\Service\TagService::getListDql">getListDql</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#132"><abbr title="Tags\Service\TagService::getListRepository">getListRepository</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#151"><abbr title="Tags\Service\TagService::getListRawQuery">getListRawQuery</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#161"><abbr title="Tags\Service\TagService::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#184"><abbr title="Tags\Service\TagService::validCreate">validCreate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#204"><abbr title="Tags\Service\TagService::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#227"><abbr title="Tags\Service\TagService::filterName">filterName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#241"><abbr title="Tags\Service\TagService::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#262"><abbr title="Tags\Service\TagService::createOrUpdatePoints">createOrUpdatePoints</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#293"><abbr title="Tags\Service\TagService::checkTagById">checkTagById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#78"><abbr title="Tags\Entity\TagPoint::toArray">toArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#56"><abbr title="Tags\Entity\TagPoint::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Factory/TagsPointsControllerFactory.php.html#13"><abbr title="Tags\Controller\Factory\TagsPointsControllerFactory::__invoke">__invoke</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsPointsController.php.html#38"><abbr title="Tags\Controller\TagsPointsController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/IndexController.php.html#25"><abbr title="Tags\Controller\IndexController::indexAction">indexAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/IndexController.php.html#40"><abbr title="Tags\Controller\IndexController::registerAction">registerAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#24"><abbr title="Tags\Controller\TagsController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#29"><abbr title="Tags\Controller\TagsController::preLoadMethod">preLoadMethod</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#38"><abbr title="Tags\Controller\TagsController::getList">getList</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#56"><abbr title="Tags\Controller\TagsController::get">get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#72"><abbr title="Tags\Controller\TagsController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#91"><abbr title="Tags\Controller\TagsController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#108"><abbr title="Tags\Controller\TagsController::replaceList">replaceList</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#120"><abbr title="Tags\Controller\TagsController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsPointsController.php.html#24"><abbr title="Tags\Controller\TagsPointsController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TagsPointsController.php.html#29"><abbr title="Tags\Controller\TagsPointsController::preLoadMethod">preLoadMethod</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#60"><abbr title="Tags\Entity\Tag::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#202"><abbr title="Tags\Entity\Tag::setCreationTime">setCreationTime</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#72"><abbr title="Tags\Entity\Tag::exchangeArray">exchangeArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#82"><abbr title="Tags\Entity\Tag::toArray">toArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#93"><abbr title="Tags\Entity\Tag::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#103"><abbr title="Tags\Entity\Tag::setId">setId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#115"><abbr title="Tags\Entity\Tag::setUserId">setUserId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#125"><abbr title="Tags\Entity\Tag::getUserId">getUserId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#133"><abbr title="Tags\Entity\Tag::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#143"><abbr title="Tags\Entity\Tag::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#153"><abbr title="Tags\Entity\Tag::getSlug">getSlug</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#163"><abbr title="Tags\Entity\Tag::setSlug">setSlug</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#173"><abbr title="Tags\Entity\Tag::getCreationDate">getCreationDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#181"><abbr title="Tags\Entity\Tag::setCreationDate">setCreationDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#194"><abbr title="Tags\Entity\Tag::getCreationTime">getCreationTime</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Service/TagService.php.html#305"><abbr title="Tags\Service\TagService::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Module.php.html#33"><abbr title="Tags\Module::getServiceConfig">getServiceConfig</abbr></a></td><td class="text-right">20%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Service/TagService.php.html#66"><abbr title="Tags\Service\TagService::getList">getList</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Service/TagService.php.html#262"><abbr title="Tags\Service\TagService::createOrUpdatePoints">createOrUpdatePoints</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Service/TagService.php.html#132"><abbr title="Tags\Service\TagService::getListRepository">getListRepository</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Service/TagService.php.html#100"><abbr title="Tags\Service\TagService::getListDql">getListDql</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Filter/TagFilter.php.html#11"><abbr title="Tags\Controller\TagFilter::filter">filter</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#186"><abbr title="Tags\Entity\TagPoint::getUpdatedAtFormat">getUpdatedAtFormat</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Service/TagService.php.html#241"><abbr title="Tags\Service\TagService::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Service/TagService.php.html#161"><abbr title="Tags\Service\TagService::create">create</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Service/TagService.php.html#48"><abbr title="Tags\Service\TagService::getItem">getItem</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/IndexController.php.html#40"><abbr title="Tags\Controller\IndexController::registerAction">registerAction</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#56"><abbr title="Tags\Controller\TagsController::get">get</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#56"><abbr title="Tags\Entity\TagPoint::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#202"><abbr title="Tags\Entity\Tag::setCreationTime">setCreationTime</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#181"><abbr title="Tags\Entity\Tag::setCreationDate">setCreationDate</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Tag.php.html#60"><abbr title="Tags\Entity\Tag::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/TagsPointsController.php.html#38"><abbr title="Tags\Controller\TagsPointsController::create">create</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#120"><abbr title="Tags\Controller\TagsController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#91"><abbr title="Tags\Controller\TagsController::update">update</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/TagsController.php.html#72"><abbr title="Tags\Controller\TagsController::create">create</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/TagPoint.php.html#156"><abbr title="Tags\Entity\TagPoint::getCreatedAtFormat">getCreatedAtFormat</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 8.0.1</a> using <a href="https://secure.php.net/" target="_top">PHP 7.4.3</a> with <a href="https://xdebug.org/">Xdebug 2.9.1</a> and <a href="https://phpunit.de/">PHPUnit 9.0.1</a> at Sat Mar 7 0:12:39 UTC 2020.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../../_js/jquery.min.js" type="text/javascript"></script>
+  <script src="../../_js/d3.min.js" type="text/javascript"></script>
+  <script src="../../_js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([9,0,0,0,0,0,1,0,0,0,0,1], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([60,0,0,1,0,0,0,0,0,0,0,3], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Controller\/Factory\/TagsControllerFactory.php.html#11\">Tags\\Controller\\Factory\\TagsControllerFactory<\/a>"],[0,1,"<a href=\"Controller\/Factory\/TagsPointsControllerFactory.php.html#11\">Tags\\Controller\\Factory\\TagsPointsControllerFactory<\/a>"],[0,3,"<a href=\"Controller\/IndexController.php.html#18\">Tags\\Controller\\IndexController<\/a>"],[0,12,"<a href=\"Controller\/TagsController.php.html#17\">Tags\\Controller\\TagsController<\/a>"],[0,4,"<a href=\"Controller\/TagsPointsController.php.html#17\">Tags\\Controller\\TagsPointsController<\/a>"],[0,18,"<a href=\"Entity\/Tag.php.html#13\">Tags\\Entity\\Tag<\/a>"],[0,18,"<a href=\"Entity\/TagPoint.php.html#13\">Tags\\Entity\\TagPoint<\/a>"],[0,3,"<a href=\"Filter\/TagFilter.php.html#9\">Tags\\Controller\\TagFilter<\/a>"],[100,0,"<a href=\"Module.php.html#13\">Tags\\User<\/a>"],[50,4,"<a href=\"Module.php.html#17\">Tags\\Module<\/a>"],[0,26,"<a href=\"Service\/TagService.php.html#18\">Tags\\Service\\TagService<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Controller\/Factory\/TagsControllerFactory.php.html#13\">Tags\\Controller\\Factory\\TagsControllerFactory::__invoke<\/a>"],[0,1,"<a href=\"Controller\/Factory\/TagsPointsControllerFactory.php.html#13\">Tags\\Controller\\Factory\\TagsPointsControllerFactory::__invoke<\/a>"],[0,1,"<a href=\"Controller\/IndexController.php.html#25\">Tags\\Controller\\IndexController::indexAction<\/a>"],[0,2,"<a href=\"Controller\/IndexController.php.html#40\">Tags\\Controller\\IndexController::registerAction<\/a>"],[0,1,"<a href=\"Controller\/TagsController.php.html#24\">Tags\\Controller\\TagsController::__construct<\/a>"],[0,1,"<a href=\"Controller\/TagsController.php.html#29\">Tags\\Controller\\TagsController::preLoadMethod<\/a>"],[0,1,"<a href=\"Controller\/TagsController.php.html#38\">Tags\\Controller\\TagsController::getList<\/a>"],[0,2,"<a href=\"Controller\/TagsController.php.html#56\">Tags\\Controller\\TagsController::get<\/a>"],[0,2,"<a href=\"Controller\/TagsController.php.html#72\">Tags\\Controller\\TagsController::create<\/a>"],[0,2,"<a href=\"Controller\/TagsController.php.html#91\">Tags\\Controller\\TagsController::update<\/a>"],[0,1,"<a href=\"Controller\/TagsController.php.html#108\">Tags\\Controller\\TagsController::replaceList<\/a>"],[0,2,"<a href=\"Controller\/TagsController.php.html#120\">Tags\\Controller\\TagsController::delete<\/a>"],[0,1,"<a href=\"Controller\/TagsPointsController.php.html#24\">Tags\\Controller\\TagsPointsController::__construct<\/a>"],[0,1,"<a href=\"Controller\/TagsPointsController.php.html#29\">Tags\\Controller\\TagsPointsController::preLoadMethod<\/a>"],[0,2,"<a href=\"Controller\/TagsPointsController.php.html#38\">Tags\\Controller\\TagsPointsController::create<\/a>"],[0,2,"<a href=\"Entity\/Tag.php.html#60\">Tags\\Entity\\Tag::__construct<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#72\">Tags\\Entity\\Tag::exchangeArray<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#82\">Tags\\Entity\\Tag::toArray<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#93\">Tags\\Entity\\Tag::getId<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#103\">Tags\\Entity\\Tag::setId<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#115\">Tags\\Entity\\Tag::setUserId<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#125\">Tags\\Entity\\Tag::getUserId<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#133\">Tags\\Entity\\Tag::getName<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#143\">Tags\\Entity\\Tag::setName<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#153\">Tags\\Entity\\Tag::getSlug<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#163\">Tags\\Entity\\Tag::setSlug<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#173\">Tags\\Entity\\Tag::getCreationDate<\/a>"],[0,2,"<a href=\"Entity\/Tag.php.html#181\">Tags\\Entity\\Tag::setCreationDate<\/a>"],[0,1,"<a href=\"Entity\/Tag.php.html#194\">Tags\\Entity\\Tag::getCreationTime<\/a>"],[0,2,"<a href=\"Entity\/Tag.php.html#202\">Tags\\Entity\\Tag::setCreationTime<\/a>"],[0,2,"<a href=\"Entity\/TagPoint.php.html#56\">Tags\\Entity\\TagPoint::__construct<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#68\">Tags\\Entity\\TagPoint::exchangeArray<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#78\">Tags\\Entity\\TagPoint::toArray<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#88\">Tags\\Entity\\TagPoint::getId<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#98\">Tags\\Entity\\TagPoint::setId<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#110\">Tags\\Entity\\TagPoint::setTagId<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#120\">Tags\\Entity\\TagPoint::getPoints<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#130\">Tags\\Entity\\TagPoint::setPoints<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#140\">Tags\\Entity\\TagPoint::getTagId<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#148\">Tags\\Entity\\TagPoint::getCreatedAt<\/a>"],[0,2,"<a href=\"Entity\/TagPoint.php.html#156\">Tags\\Entity\\TagPoint::getCreatedAtFormat<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#169\">Tags\\Entity\\TagPoint::setCreatedAt<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#178\">Tags\\Entity\\TagPoint::getUpdatedAt<\/a>"],[0,2,"<a href=\"Entity\/TagPoint.php.html#186\">Tags\\Entity\\TagPoint::getUpdatedAtFormat<\/a>"],[0,1,"<a href=\"Entity\/TagPoint.php.html#199\">Tags\\Entity\\TagPoint::setUpdatedAt<\/a>"],[0,3,"<a href=\"Filter\/TagFilter.php.html#11\">Tags\\Controller\\TagFilter::filter<\/a>"],[100,1,"<a href=\"Module.php.html#19\">Tags\\Module::getConfig<\/a>"],[100,1,"<a href=\"Module.php.html#27\">Tags\\Module::onBootstrap<\/a>"],[20,1,"<a href=\"Module.php.html#33\">Tags\\Module::getServiceConfig<\/a>"],[100,1,"<a href=\"Module.php.html#52\">Tags\\Module::getModuleDependencies<\/a>"],[0,1,"<a href=\"Service\/TagService.php.html#38\">Tags\\Service\\TagService::__construct<\/a>"],[0,2,"<a href=\"Service\/TagService.php.html#48\">Tags\\Service\\TagService::getItem<\/a>"],[0,4,"<a href=\"Service\/TagService.php.html#66\">Tags\\Service\\TagService::getList<\/a>"],[0,3,"<a href=\"Service\/TagService.php.html#100\">Tags\\Service\\TagService::getListDql<\/a>"],[0,3,"<a href=\"Service\/TagService.php.html#132\">Tags\\Service\\TagService::getListRepository<\/a>"],[0,1,"<a href=\"Service\/TagService.php.html#151\">Tags\\Service\\TagService::getListRawQuery<\/a>"],[0,2,"<a href=\"Service\/TagService.php.html#161\">Tags\\Service\\TagService::create<\/a>"],[0,1,"<a href=\"Service\/TagService.php.html#184\">Tags\\Service\\TagService::validCreate<\/a>"],[0,1,"<a href=\"Service\/TagService.php.html#204\">Tags\\Service\\TagService::update<\/a>"],[0,1,"<a href=\"Service\/TagService.php.html#227\">Tags\\Service\\TagService::filterName<\/a>"],[0,2,"<a href=\"Service\/TagService.php.html#241\">Tags\\Service\\TagService::delete<\/a>"],[0,3,"<a href=\"Service\/TagService.php.html#262\">Tags\\Service\\TagService::createOrUpdatePoints<\/a>"],[0,1,"<a href=\"Service\/TagService.php.html#293\">Tags\\Service\\TagService::checkTagById<\/a>"],[0,1,"<a href=\"Service\/TagService.php.html#305\">Tags\\Service\\TagService::getId<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

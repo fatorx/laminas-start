@@ -3,11 +3,7 @@
 namespace Users;
 
 use Laminas\ServiceManager\ServiceManager;
-use Laminas\EventManager\EventInterface;
-use Laminas\EventManager\EventManager;
 use Laminas\Mvc\MvcEvent;
-use Laminas\Escaper\Escaper;
-use Doctrine\ORM\EntityManager;
 
 use Users\Controller\UsersController;
 use Users\Controller\TokenController;

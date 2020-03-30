@@ -40,7 +40,7 @@ class BaseService implements IService
     {
         $this->config = $config;
     }
-
+    
     /**
      * @return array
      */

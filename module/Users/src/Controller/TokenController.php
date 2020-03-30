@@ -2,6 +2,8 @@
 
 namespace Users\Controller;
 
+use Laminas\Http\Request;
+
 use Application\Controller\ApiController;
 use Users\Service\TokenService;
 
@@ -19,11 +21,13 @@ class TokenController extends ApiController
 
     public function indexAction()
     {
-        $appKey = $this->getRequest()->getHeaders()
-                       ->get('App-Key')->getFieldValue(); 
+        /** @var Request $request */
+        $request = $this->getRequest(); 
+        $appKey  = $request->getHeaders()
+                           ->get('App-Key')->getFieldValue(); 
                             
         $pars = $this->processBodyContent($this->getRequest());
-        $user = $this->service->checkUser($pars); 
+        $user = $this->service->checkUser($pars, $appKey); 
         
         if (!$user) {
             $this->httpStatusCode = 400;

@@ -34,10 +34,14 @@ class TokenService extends BaseService
 
     /**
      * @param array $pars 
+     * @param string $appKey 
      * @return User|false
      */
-    public function checkUser(array $pars)
+    public function checkUser(array $pars, string $appKey)
     {
+        if ($this->config['app-key'] != $appKey) {
+            return false;
+        }
         $user = $this->em->getRepository($this->entity)
                          ->findOneBy(['email' => $pars['username']]); 
         if ($user) {       

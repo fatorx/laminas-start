@@ -4,8 +4,6 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use Laminas\Mvc\Controller\AbstractActionController;
-use Laminas\ServiceManager\ServiceManager;
-use Laminas\View\Model\ViewModel;
 use Laminas\View\Model\JsonModel;
 
 /**

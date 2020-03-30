@@ -2,11 +2,12 @@
 
 namespace Application;
 
-use Laminas\ModuleManager\Feature\AutoloaderProviderInterface;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\EventManager\EventInterface;
 use Laminas\Mvc\MvcEvent;
+use Laminas\Http\Request;
 use Doctrine\ORM\EntityManager;
+
 
 use Application\Service\RequestResponseService;
 class Module
@@ -22,18 +23,16 @@ class Module
      * 
      * @param \Zend\Mvc\MvcEvent $e
      */
-    public function onBootstrap(EventInterface $e)
+    public function onBootstrap(MvcEvent $e)
     {
         $data = (new \Datetime())->format('Y-m-d H:i:s');
 
-        $e->getApplication()->getEventManager()->attach(MvcEvent::EVENT_FINISH, function ($e) use ($data) {
-            $serviceManager = $e->getApplication()->getServiceManager();
-            $reqResService = $serviceManager->get(RequestResponseService::class);
-            $reqResService->register($e->getApplication(), $data);
-        });
-        
+        /** @var Request $request */
+        $request = $e->getApplication()->getRequest();
+        $server = $request->getServer();
+
         // Allow from any origin
-        if (isset($_SERVER['HTTP_ORIGIN'])) {
+        if (!empty($server->get('HTTP_ORIGIN'))) {
             header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
             header('Access-Control-Allow-Credentials: true');
             header('Access-Control-Max-Age: 86400');
@@ -51,6 +50,26 @@ class Module
             }
             exit(0);
         }
+
+        $e->getApplication()->getEventManager()->attach(MvcEvent::EVENT_FINISH, function ($e) use ($data) {
+            $serviceManager = $e->getApplication()->getServiceManager();
+            $reqResService = $serviceManager->get(RequestResponseService::class);
+            $reqResService->register($e->getApplication(), $data);
+        });
+
+        $e->getApplication()->getEventManager()->attach(MvcEvent::EVENT_FINISH, function ($e) {
+            $headers = $e->getApplication()->getResponse()->getHeaders();
+            $headers->addHeaderLine("X-Frame-Options: DENY");
+            $headers->addHeaderLine("X-XSS-Protection: 1");
+            $headers->addHeaderLine("X-Content-Type-Options: nosniff");
+            $headers->addHeaderLine("Referrer-Policy: no-referrer-when-downgrade");
+            $headers->addHeaderLine('Expect-CT: max-age=0, report-uri="https://host.server.report"');
+            
+            $headers->addHeaderLine("Strict-Transport-Security:max-age=63072000");
+            $headers->addHeaderLine("Feature-Policy: vibrate 'self'; sync-xhr 'self'");
+        }, 100000);
+
+        
     }
 
     public function getServiceConfig()
