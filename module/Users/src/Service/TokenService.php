@@ -43,7 +43,7 @@ class TokenService extends BaseService
             return false;
         }
         $user = $this->em->getRepository($this->entity)
-                         ->findOneBy(['email' => $pars['username']]); 
+                         ->findOneBy(['nickname' => $pars['username']]); 
         if ($user) {       
             $passwordHash = $user->getPassword(); 
             return (password_verify($pars['password'], $passwordHash)) ? $user : false;
